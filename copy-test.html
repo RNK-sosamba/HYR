@@ -77,7 +77,6 @@
     <button id="copyButton">📋 Скопировать ВСЕ прокси для Telegram</button>
     <div id="status"></div>
 
-    <!-- Новая инструкция вместо старого предупреждения -->
     <div class="instruction">
         <p><span class="emoji">😀</span> <strong>Всё проще пареной репы.</strong></p>
         <p><span class="emoji">📝</span> <strong>ИНСТРУКЦИЯ</strong></p>
@@ -94,7 +93,6 @@
 </div>
 
 <script>
-    // Все прокси (ваш полный список)
     const allProxies = `https://t.me/proxy?server=msk.senkapopka.ru&port=5443&secret=ee6288b4d5d9526c8d60cf8052e7eb0d346d736b2e73656e6b61706f706b612e7275
 https://t.me/proxy?server=mt.space-link.cloud&port=443&secret=eeee09513d515ee0c9ab950eb3698a1b0e6d742e73706163652d6c696e6b2e636c6f7564
 https://t.me/proxy?server=tg.caxero.ru&port=6767&secret=fffc0efade691faeaccb0ee0cdbf1773
@@ -117,7 +115,6 @@ https://t.me/proxy?server=s8.cryptokazancev.ru&port=443&secret=eef97e0827ad60fe2
                 return false;
             }
         }
-        // запасной вариант (на случай очень старых браузеров)
         try {
             const textarea = document.createElement("textarea");
             textarea.value = text;
@@ -142,89 +139,6 @@ https://t.me/proxy?server=s8.cryptokazancev.ru&port=443&secret=eef97e0827ad60fe2
             setTimeout(() => { statusDiv.innerHTML = ""; }, 3000);
         } else {
             statusDiv.innerHTML = "❌ Ошибка. Попробуйте другой браузер (Chrome, Safari).";
-        }
-    });
-</script>
-</body>
-</html>        }
-        button:active {
-            background-color: #2ecc71;
-            transform: scale(0.98);
-        }
-        #status {
-            font-size: 16px;
-            color: #333;
-            margin-top: 10px;
-        }
-        .note {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <button id="copyButton">📋 Скопировать ВСЕ прокси для Telegram</button>
-    <div id="status"></div>
-    <div class="note">
-        ⚠️ Если кнопка не работает, откройте этот файл через браузер (Chrome, Safari, Firefox),<br>
-        а не через «Просмотр файлов».
-    </div>
-</div>
-
-<script>
-    // Все ваши прокси – ровно в том виде, как вы их написали
-    const allProxies = `https://t.me/proxy?server=msk.senkapopka.ru&port=5443&secret=ee6288b4d5d9526c8d60cf8052e7eb0d346d736b2e73656e6b61706f706b612e7275
-https://t.me/proxy?server=mt.space-link.cloud&port=443&secret=eeee09513d515ee0c9ab950eb3698a1b0e6d742e73706163652d6c696e6b2e636c6f7564
-https://t.me/proxy?server=tg.caxero.ru&port=6767&secret=fffc0efade691faeaccb0ee0cdbf1773
-https://t.me/proxy?server=s3.cryptokazancev.ru&port=443&secret=ee5b79f25046ed5f70efcff5df8fa2e3247777772e636c6f7564666c6172652e636f6d
-https://t.me/proxy?server=s2.cryptokazancev.ru&port=443&secret=ee013aebf68af63788a2a077436af4e2a57777772e636c6f7564666c6172652e636f6d
-https://t.me/proxy?server=s1.cryptokazancev.ru&port=443&secret=ee583d044a53cd8f769dec28863c1a77037777772e636c6f7564666c6172652e636f6d
-https://t.me/proxy?server=s1.pavelkazancev02.ru&port=443&secret=ee668d6f276a6870f656b4df70fb23c4b77362657262616e6b2e7275
-https://t.me/proxy?server=s2.pavelkazancev02.ru&port=443&secret=ee258270c24ef93f86eba77326e460430a6f6b2e7275
-https://t.me/proxy?server=s3.pavelkazancev02.ru&port=443&secret=eeb705021360e2248f8c1c5b947585198a6f6b2e7275
-https://t.me/proxy?server=s7.cryptokazancev.ru&port=443&secret=ee0b3153956642fb8aac38d3de418002457362657262616e6b2e7275
-https://t.me/proxy?server=s8.cryptokazancev.ru&port=443&secret=eef97e0827ad60fe2cb4a3f1ad5589928f7362657262616e6b2e7275`;
-
-    async function copyToClipboard(text) {
-        // Современный метод
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            try {
-                await navigator.clipboard.writeText(text);
-                return true;
-            } catch (err) {
-                console.warn("clipboard.writeText failed", err);
-                return false;
-            }
-        }
-        // Запасной метод (старые браузеры)
-        try {
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textarea);
-            return true;
-        } catch (err) {
-            console.warn("execCommand copy failed", err);
-            return false;
-        }
-    }
-
-    const copyButton = document.getElementById("copyButton");
-    const statusDiv = document.getElementById("status");
-
-    copyButton.addEventListener("click", async () => {
-        const success = await copyToClipboard(allProxies);
-        if (success) {
-            statusDiv.innerHTML = "✅ <b>Скопировано!</b> Теперь вставьте куда нужно (например, в Telegram).";
-            setTimeout(() => { statusDiv.innerHTML = ""; }, 3000);
-        } else {
-            statusDiv.innerHTML = "❌ Ошибка. Откройте этот файл в браузере (Chrome/Safari/Firefox).";
         }
     });
 </script>
